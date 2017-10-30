@@ -1,0 +1,17 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:PoC.WpfWarning">
+    <Style TargetType="TextBox">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding HasError}" Value="true">
+                <Setter Property="Background" Value="Red" />
+                <Setter Property="DataGridCell.ToolTip"
+                Value="{Binding RelativeSource={RelativeSource Self},
+                                                Path=(Validation.Errors)[0].ErrorContent}"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding HasWarning}" Value="true">
+                <Setter Property="Background" Value="Yellow" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

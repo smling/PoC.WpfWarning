@@ -1,0 +1,30 @@
+﻿<Window x:Class="PoC.WpfWarning.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PoC.WpfWarning"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Window.DataContext>
+        <local:User />
+    </Window.DataContext>
+    <StackPanel>
+        <TextBlock Text="User Name" />
+        <TextBox Text="{Binding Name, Mode=TwoWay}" Validation.ErrorTemplate="{x:Null}">
+            <TextBox.Style>
+                <Style TargetType="TextBox">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding HasWarnings}" Value="True">
+                            <Setter Property="Background" Value="Yellow" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Errors}" Value="True">
+                            <Setter Property="Background" Value="Pink" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+        <TextBox />
+    </StackPanel>
+</Window>
